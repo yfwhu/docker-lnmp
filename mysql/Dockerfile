@@ -1,1 +1,2 @@
-FROM daocloud.io/library/mysql:latest
+ARG MYSQL_VERSION
+FROM mysql:${NGINX_VERSION}
