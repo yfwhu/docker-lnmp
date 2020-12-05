@@ -34,6 +34,9 @@ services:
       - ./php/session:/usr/local/etc/php/session
       - ./php/config/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - ./php/config/php-fpm.d:/usr/local/etc/php-fpm.d
+      - ./php/log/php-error.log:/var/log/php-error.log
+      - ./php/log/php-fpm-error.log:/var/log/php-fpm-error.log
+      - ./php/log/php-fpm-access.log:/var/log/php-fpm-access.log
     networks:
       - frontend
       - backend  
@@ -50,8 +53,10 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/my.cnf
+      - ./mysql/log/mysqld.log:/var/log/mysqld.log
     environment:
       MYSQL_ROOT_PASSWORD: 123456
+      TZ: Asia/Shanghai # mysql时区修改为中国时区
     networks:
       - backend
     restart: always
